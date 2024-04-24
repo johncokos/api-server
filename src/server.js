@@ -6,6 +6,8 @@ const cors = require('cors');
 
 const handleNotFound = require('./handlers/404.js');
 const handleError = require('./handlers/500.js');
+const logger = require('./middleware/logger.js');
+const timeStamp = require('./middleware/timestamp.js');
 
 const app = express();
 
@@ -17,6 +19,9 @@ let database = {
 };
 
 app.use(cors()); // no restrictions on the app working on the internet
+
+app.use(timeStamp);
+// app.use(logger);
 
 // route definition
 app.get('/', getHomePage);
