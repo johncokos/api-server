@@ -1,3 +1,3 @@
 'use strict';
 
-console.log("hello world");
+console.log("We are about to make a server ...");
