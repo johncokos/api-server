@@ -1,3 +1,6 @@
 'use strict';
 
-console.log("We are about to make a server ...");
+require('dotenv').config();
+const server = require('./src/server.js');
+
+server.start(process.env.PORT || 3000);
