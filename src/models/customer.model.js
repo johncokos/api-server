@@ -1,6 +1,6 @@
 'use strict';
 
-const People = (sequelize, DataTypes) => sequelize.define('People', {
+const Customer = (sequelize, DataTypes) => sequelize.define('Customer', {
   firstName: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -15,4 +15,4 @@ const People = (sequelize, DataTypes) => sequelize.define('People', {
   },
 });
 
-module.exports = People;
+module.exports = Customer;

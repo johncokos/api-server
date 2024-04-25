@@ -8,12 +8,14 @@ const app = express();
 const notFoundHandler = require('./handlers/404.js');
 const errorHandler = require('./handlers/500.js');
 
-const peopleRoutes = require('./routes/people.js');
+const customerRoutes = require('./routes/customers.js');
+const ordersRoutes = require('./routes/orders.js');
 
 app.use(cors());
 app.use(express.json());
 
-app.use(peopleRoutes);
+app.use('/customers', customerRoutes);
+app.use('/orders', ordersRoutes);
 
 // Force an error for the tests
 app.get('/broken', (req,res,next) => next("whoops!"));

@@ -31,7 +31,7 @@ describe('API Server', () => {
 
   it('can add a record', async () => {
     let data = {"firstName":"Rosie", "lastName":"Sullivan",age: 9};
-    let response = await (mockRequest.post('/people').send(data));
+    let response = await (mockRequest.post('/customers').send(data));
     expect(response.status).toBe(201);
     expect(response.body.id).toBeDefined();
     expect(response.body.firstName).toBe('Rosie');
@@ -40,16 +40,16 @@ describe('API Server', () => {
   });
 
   it('can get a list of records', async () => {
-    let response = await mockRequest.get('/people');
+    let response = await mockRequest.get('/customers');
     expect(response.status).toBe(200);
     expect(response.body).toBeInstanceOf(Array);
     expect(response.body.length).toBeGreaterThan(0);
     expect(response.body[0]).toHaveProperty('firstName');
-    // expect a list of people in the body...
+    // expect a list of customers in the body...
   });
 
   it('can get a record', async () => {
-    let response = await mockRequest.get('/people/1');
+    let response = await mockRequest.get('/customers/1');
     expect(response.status).toBe(200);
     expect(response.body).toBeInstanceOf(Object);
     expect(response.body).toHaveProperty('firstName');
@@ -59,7 +59,7 @@ describe('API Server', () => {
 
   it('can update a record', async () => {
     let data = {};
-    let response = await mockRequest.put('/people/1',data);
+    let response = await mockRequest.put('/customers/1',data);
     expect(response.status).toBe(200);
     // expect the right record in the body...
   });
@@ -67,11 +67,11 @@ describe('API Server', () => {
   it('can delete a record', async () => {
     // Add a record first
     let data = {"firstName":"Rosie", "lastName":"Sullivan",age: 9};
-    let response = await (mockRequest.post('/people').send(data));
+    let response = await (mockRequest.post('/customers').send(data));
     let id = response.body.id;
 
     // Delete that record
-    let deleteResponse = await mockRequest.delete(`/people/${id}`);
+    let deleteResponse = await mockRequest.delete(`/customers/${id}`);
     expect(deleteResponse.status).toBe(204);
     expect(deleteResponse.text).toBe('');
   });
